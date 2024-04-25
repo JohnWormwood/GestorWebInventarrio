@@ -1,0 +1,29 @@
+.btn-container {
+    display: flex;
+    justify-content: center; /* Alinea el botón horizontalmente */
+  }
+  
+  .btn-delete {
+    background-color: transparent; /* Fondo transparente */
+    color: #ff5252; /* Texto rojo */
+    border: 2px solid #ff5252; /* Borde rojo */
+    border-radius: 20px; /* Borde redondeado */
+    padding: 10px 20px;
+    font-size: 1em; /* Tamaño de fuente relativo */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+  }
+  
+  .btn-delete:hover {
+    background-color: #ff1744; /* Color rojo más oscuro al pasar el ratón */
+    border-color: #ff1744; /* Cambia el color del borde */
+    color: #fff; /* Cambia el color del texto a blanco */
+  }
+  
+  /* Haz el botón responsivo */
+  @media (max-width: 768px) {
+    .btn-delete {
+      font-size: 0.8em; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
+    }
+  }
+  

@@ -1,0 +1,136 @@
+/*                       AÑADIR POPUP                                */
+
+/* Estilo del botĆ³n para abrir el pop-up */ 
+.open-button {
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilo del pop-up del formulario */
+.container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  padding: 15px 10px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+}
+
+.container .title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.container .center {
+  display: block;
+  height: 100%;
+}
+
+
+.container form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+form .user-details .input-box {
+  margin: 10px 0 12px 0;
+  width: calc(100% / 3 - 50px);
+  display: block;
+}
+
+
+
+.user-details .input-box .details {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  padding-left: 1vh;
+}
+
+.user-details .input-box input::placeholder{
+  position: absolute;
+  margin-left: 5px;
+}
+
+/* Estilo del botĆ³n de enviar y del botĆ³n de cerrar */
+.btn {
+  padding: 0;
+  border: 10px black;
+  cursor: pointer;
+  width: 100%;
+  background: transparent;
+}
+
+.btn button {
+  width: 300px;
+  height: 40px;
+}
+
+.btn .create{
+  background-color: #ff9b00;
+  color: whitesmoke;
+}
+
+.btn .modify{
+  background-color: #ff9b00;
+  color: black;
+}
+/* Estilo del botĆ³n de cerrar */
+.btn .cancel {
+  background-color: rgb(157, 157, 157);
+}
+.btn-modificar,
+.btn-borrar {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 20px; /* Ajusta el tamaño del ícono según lo necesites */
+    color: #00295d; /* Cambia el color del ícono según lo necesites */
+}
+
+
+/* Estilo del popup modificar */
+.popup-container {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 15px 10px;
+  border-radius: 5px;
+  /* Ajusta la alineación del contenido del popup */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.popup-container .title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.popup-container .center {
+  display: block;
+  height: 100%;
+}
+
+
+.popup-container form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+}

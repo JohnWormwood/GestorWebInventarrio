@@ -1,0 +1,326 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header nav, body {
+    background-image: url("../img/fondo.png");
+    background-repeat: no-repeat; /* Esto hará que la imagen se repita solo verticalmente */
+    background-size: 100%;
+    background-attachment: fixed; /*Para fijar la imagen*/
+}
+
+/* Estilos para el pseudo-elemento */
+.header::before {
+    content: ""; /* Añade contenido al pseudo-elemento */
+    position: absolute; /* Posición absoluta para cubrir toda la imagen de fondo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/fondo.png"); /* Define la imagen de fondo */
+    background-repeat: no-repeat; /* Esto hará que la imagen se repita solo verticalmente */
+    background-size: 100%;
+    background-attachment: fixed; /* Para fijar la imagen */
+    filter: blur(5px); /* Aplica un filtro de desenfoque a la imagen de fondo */
+    z-index: -1; /* Asegura que el pseudo-elemento esté detrás del contenido del elemento principal */
+}
+.input{
+    padding-left: 1vh;
+}
+/* CABECERA ********************************** */
+
+/*                                      MENU                                 */
+header nav {
+    display: flex;
+    background-color: #9e9e9e3f;
+    text-align: right;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3vh 3vw;
+    
+}
+header img {
+    height: 50px;
+    width: auto;
+}
+
+header ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #fafdff;
+}
+
+header ul li:hover,
+header ul:hover,
+header ul li a:hover {
+    color: #ababab; 
+}
+
+/*BUSCAR          AÑADIR EXPORTAR IMPORTAR                  FILTRO*/
+
+header div {
+    padding: 1vh;
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: #00295d;
+    width: 100%;
+}
+
+header div .new_product{
+    flex-wrap: wrap;
+}
+
+.fa-solid fa-magnifying-glass{
+    color: white;
+}
+head div div{
+    width: 32vw;
+    
+}
+
+/*Buscar   */
+#buscar{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+#buscar input{
+    font-size: medium;
+    width: 70vh;
+    height: 4vh;
+    padding-left: 1vh;
+    margin-right: 1vh;
+
+}
+#buscar button{
+    font-size: medium;
+    width: 4vh;
+    height: 4vh;
+}
+header div input::placeholder{
+    text-align: center;
+}
+/*                               ICONOS                                       */
+#botones button{
+    display:inline;
+    font-size: large;
+    padding: 1vh;
+    color: #00295d;
+    margin-right: 1vh;
+}
+#botones button:hover{
+    background-color: #08172a;
+    color: #fff;
+}
+
+button:hover{
+    cursor: pointer;
+}
+input[type="checkbox"]:hover, #myDropdown input label:hover {
+    cursor: pointer; /* Cambia el cursor al pasar sobre un checkbox */
+}
+/*                          BOTON IMPORTAR              */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fefefe;
+    color: #000;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Adjusted width */
+}
+
+
+.close {
+    color: #aaa;
+    align-self: flex-end;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#fileCount {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fileInput {
+    margin-bottom: 10px;
+}
+
+#uploadForm button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/*           FILTRO                                                  */
+/* Estilo del botón */
+header .dropbtn{
+    display: flex
+    justify-content: 
+}
+
+.dropbtn {
+    background-color:white ;
+    color:#00295d ;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Contenedor del botón desplegable */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+/* Contenedor del botón desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    column-count: 2; /* Divide en dos columnas */
+}
+
+/* Opciones del botón desplegable */
+.dropdown-content label {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/*                 TABLA            */
+.table {
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-left: 0.3vh;
+    margin-right: 0.3vh;
+    width: -webkit-fill-available;
+}
+.table,
+.table th,
+.table td {
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+.table th,
+.table td {
+    padding: 0.5rem;
+}
+.table tr {
+    background-color:  #fafdff;
+
+}
+.table th {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+/* Establece el borde solo para la primera fila */
+tr:first-child td {
+    border-bottom: 1px solid rgb(149, 150, 166); ; /* Borde inferior para las celdas de la primera fila */
+    border-left: 1px solid rgb(149, 150, 166); ; /* Borde izquierdo para las celdas de la primera fila */
+    border-right: 1px solid rgb(149, 150, 166); ; /* Borde derecho para las celdas de la primera fila */
+  }
+  
+  /* Elimina el borde vertical para las celdas de las filas siguientes */
+  tr:not(:first-child) td {
+    border-left: none; /* Elimina el borde izquierdo para las celdas de las filas siguientes */
+    border-right: none; /* Elimina el borde derecho para las celdas de las filas siguientes */
+    border-bottom: 1px solid rgb(149, 150, 166);  /* Borde inferior para las celdas de las filas siguientes */
+  }
+/* Estilo para las filas impares */
+tr:nth-child(odd) {
+    background-color: #fbfbfb; /* Cambia el color de fondo para las filas impares */
+  }
+  
+  /* Estilo para las filas pares (opcional) */
+  tr:nth-child(even) {
+    background-color: #e3e3e3; /* Cambia el color de fondo para las filas pares (opcional) */
+  }
+  
+#tabla #encabezado {
+    /* Cambia el color de fondo del primer tr */
+    background-color: rgb(149, 150, 166); 
+    font-size: 16px;
+}
+
+
+.resizer {
+    position: absolute;
+    top: 0;
+    right: -2.5px; /* Ajusta el posicionamiento para que esté alineado con el borde derecho */
+    width: 5px; /* Aumenta la anchura para que sea más fácil de agarrar */
+    cursor: col-resize;
+    user-select: none;
+    z-index: 1; /* Asegúrate de que el controlador esté encima de las celdas */
+}
+
+.resizer:hover,
+.resizing {
+    z-index: 2; /* Asegúrate de que el controlador resaltado esté encima de todo */
+}
+
+
+/*Boton modificar*/
+#popupModificar{
+    width: 0%;
+}
+
+td .get-product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
