@@ -118,11 +118,6 @@ function PopupImport() {
     function updateFileCount() {
         var fileCountText = document.getElementById('fileCount');
         var fileInput = document.getElementById('fileInput');
-        if (fileInput.files.length === 1) {
-            fileCountText.textContent = "1 archivo seleccionado";
-        } else {
-            fileCountText.textContent = fileInput.files.length + " archivos seleccionados";
-        }
     }
 
     document.getElementById('openPopupButton').addEventListener('click', openPopup);
@@ -153,6 +148,7 @@ function importarDesdeCSV() {
             // Manejar la respuesta del servidor
             console.log(response);
             alert(response);
+            closePopup(); // Cerrar el popup después de importar los datos
         },
         error: function (xhr, status, error) {
             // Manejar errores aquí si es necesario
@@ -163,10 +159,6 @@ function importarDesdeCSV() {
 }
 
 
-
-
-
-
 //                           TABLA                      //
 
 function setButtonStyles() {
@@ -174,6 +166,7 @@ function setButtonStyles() {
     buttons.css({
         "background-color": "transparent",
         "border": "none",
+        "outline": "none",
         "cursor": "pointer",
         "padding": "5px",
         "font-size": "17px", // Ajusta el tamaño del ícono según lo necesites
@@ -230,7 +223,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Agregar estilos a los botones
                 setButtonStyles();
-
 
                 // Agregar la fila a la tabla
                 tabla.append(fila);
@@ -316,6 +308,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Mostrar el popup de modificación
                 $("#popupModificar").show();
                 // Agregar el evento al botón "Modificar" después de generarlo
+
+
             });
             // Controlador de eventos para el clic en el botón "Modificar" dentro del popup
             $("#popupModificar").on("click", "#btnSubmit2", function () {
@@ -361,6 +355,64 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
             });
+
+            
+            $("#tabla").on("click", ".btn-editarcantidad", function () {
+                var id = $(this).closest("tr").data("id");
+                // Lógica para modificar el elemento con el ID especificado
+                // Obtener los datos de la fila correspondiente
+                var cantidad = fila.find("td:eq(3)").text(); // Ajusta el índice según la cantidad de columnas añadidas
+
+
+                // Llenar el formulario de modificación dentro del popup
+                $("#popupCantidad").html(`
+                <div class="quantity-container">
+                    <div class="center">
+                        <div class="title">Modificar Producto</div>
+                            <form id="formulariomodificar" method="post">
+                                <div class="user-details">
+                                <input type="hidden" name="id" value="${id}"> <!-- Campo oculto para la ID -->
+                                <div class="input-box">
+                                    <label for="details">Cantidad: </label>
+                                    <input type="text" class="form-control" name="cantidad" placeholder="Introduzca la cantidad" value="${cantidad}">
+                                </div>
+                                <br>
+                                <div class="btn">
+                                    <button id="btnSubmit2" type="button" class="modify">Modificar</button>
+                                    <button type="button" class="cancel" onclick="closeForm()">Cerrar</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>`
+                );
+
+                // Mostrar el popup de modificación
+                $("#popupCantidad").show();
+                // Agregar el evento al botón "Modificar" después de generarlo
+
+
+            });
+            // Controlador de eventos para el clic en el botón "Modificar" dentro del popup
+            $("#popupCantidad").on("click", "#btnSubmit2", function () {
+                // Obtener el formulario de modificación y los datos del mismo
+                var form = $("#formulariomodificar");
+                var formData = form.serialize(); // Serializar el formulario para enviarlo con la solicitud AJAX
+
+                // Crear una nueva solicitud AJAX para enviar los datos del formulario al servidor
+                $.ajax({
+                    url: "../php/modificar.php",
+                    type: "POST",
+                    data: formData,
+                    success: function (response) {
+                        alert(response); // Mostrar la respuesta del servidor en un mensaje de alerta
+                        // Otra lógica para manejar la respuesta del servidor, si es necesario
+                        buscar();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error en la solicitud: " + status + ", " + error);
+                    }
+                });
+            });
         }
 
     });
@@ -368,6 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //Cerrar el form de modificar
 function closeForm() {
     $("#popupModificar").hide();
+    $("#popupCantidad").hide();
     $("#myForm").hide();
 }
 
@@ -438,18 +491,21 @@ function mostrarResultados(data) {
                 "display": "flex",
                 "flex-direction": "column",
                 "justify-content": "center",
-                "align-items": "center",
-                "background-color": " #fafdff"
+                "align-items": "center"
             }).append(
                 $("<button>").html('<i class="fa-solid fa-pen-to-square"></i>').addClass("btn-modificar"),
                 $("<button>").html('<i class="fa-solid fa-trash-can-arrow-up"></i>').addClass("btn-borrar")
             )
+
+
         );
         // Agregar la fila a la tabla
         tabla.append(fila);
+
+        recargarCSS();
+        setButtonStyles();
     });
-    recargarCSS();
-    setButtonStyles();
+
     // Llamar a la función para hacer las columnas de la tabla redimensionables
     createResizableTable($("#tabla"), true);
 }

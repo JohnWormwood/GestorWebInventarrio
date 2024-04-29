@@ -6,21 +6,23 @@
 }
 
 header nav, body {
-    background-image: url("../img/fondo.png");
+    background-image: url("../img/fondo2.jpg");
     background-repeat: no-repeat; /* Esto hará que la imagen se repita solo verticalmente */
     background-size: 100%;
     background-attachment: fixed; /*Para fijar la imagen*/
+    
 }
 
+
 /* Estilos para el pseudo-elemento */
-.header::before {
+.header::before{
     content: ""; /* Añade contenido al pseudo-elemento */
     position: absolute; /* Posición absoluta para cubrir toda la imagen de fondo */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../img/fondo.png"); /* Define la imagen de fondo */
+    background-image: url("../img/fondo2.jpg"); /* Define la imagen de fondo */
     background-repeat: no-repeat; /* Esto hará que la imagen se repita solo verticalmente */
     background-size: 100%;
     background-attachment: fixed; /* Para fijar la imagen */
@@ -37,7 +39,7 @@ header nav {
     display: flex;
     background-color: #9e9e9e3f;
     text-align: right;
-    align-items: center;
+    align-items: center;    
     justify-content: space-between;
     padding: 3vh 3vw;
     
@@ -53,14 +55,13 @@ header ul li {
     margin-left: 10px;
 }
 
-header ul li a {
+header ul li a{
     text-decoration: none;
     color: #fafdff;
 }
 
-header ul li:hover,
-header ul:hover,
-header ul li a:hover {
+header li:hover,
+header li a:hover {
     color: #ababab; 
 }
 
@@ -195,8 +196,8 @@ input[type="checkbox"]:hover, #myDropdown input label:hover {
 /*           FILTRO                                                  */
 /* Estilo del botón */
 header .dropbtn{
-    display: flex
-    justify-content: 
+    display: flex;
+    justify-content: right;
 }
 
 .dropbtn {
@@ -294,6 +295,9 @@ tr:nth-child(odd) {
 }
 
 
+
+
+
 .resizer {
     position: absolute;
     top: 0;
@@ -323,4 +327,14 @@ td .get-product{
     left: 0;
     margin: 0;
     padding: 0;
+}
+
+button.btn-editarcantidad{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 17px;
+    color: #00295d;
 }

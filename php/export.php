@@ -12,8 +12,8 @@ if ($conn->connect_error) {
   die("Error de conexión: " . $conn->connect_error);
 }
 
-// Consulta SQL para seleccionar los datos que deseas exportar (reemplaza con tu consulta)
-$sql = "SELECT * FROM `inventario`";
+// Consulta SQL para seleccionar solo las columnas necesarias
+$sql = "SELECT Nombre, descripcion, cantidad, fabricante, estado, Stock, Valor, Grupo, Subgrupo, dueno, LugarEspacio, LugarArmario, LugarCaja FROM `inventario`";
 $result = $conn->query($sql);
 
 // Nombre del archivo CSV y cabeceras
@@ -25,7 +25,7 @@ header('Content-Disposition: attachment; filename="' . $filename . '"');
 $output = fopen('php://output', 'w');
 
 // Escribe las cabeceras del CSV
-fputcsv($output, array('ID', 'Descripción', 'Cantidad', 'Fabricante', 'Estado', 'Stock', 'Valor', 'Grupo', 'SubGrupo', 'Dueño', 'Espacio', 'Armario', 'Caja')); // Reemplaza con los nombres de las columnas
+fputcsv($output, array('Nombre', 'descripcion', 'cantidad', 'fabricante', 'estado', 'Stock', 'Valor', 'Grupo', 'Subgrupo', 'dueno', 'LugarEspacio', 'LugarArmario', 'LugarCaja'));
 
 // Escribe los datos del resultado de la consulta en el archivo CSV
 while ($row = $result->fetch_assoc()) {

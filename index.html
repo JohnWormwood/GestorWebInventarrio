@@ -3,249 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario</title>
+    <link rel="stylesheet" href="./css/login.css">
     <script src="https://kit.fontawesome.com/488ca7d98c.js" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Coloca el script.js y el css después de cargar jQuery -->
-    <script src="./jvs/script.js"></script>
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="stylesheet" href="./css/add.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Iniciar sesión</title>
 </head>
-<div class="transparencia"></div>
 <header>
-
     <nav>
-        <a href="./index.html"><img src="./img/logo.png" alt="Logo de Mi Empresa"></a>
-        <ul>
-            <li><a href="./index.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a></li>
-            <li> | </li>
-            <li><a href="./papelera.html"><i class="fa-solid fa-trash"></i> Papelera</a></li>
-            <li> | </li>
-            <li><a href="./historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
-            <li> | </li>
-            <li><a href="##"><i class="fa-solid fa-user"></i> Usuario</a></li>
-
-        </ul>
+        <img src="./img/logo.png" alt="Logo de Mi Empresa">
     </nav>
-    <div>
-        <div id="buscar">
-            <input id="busqueda" placeholder="Buscar">
-            <button id="btn_busqueda" onclick="buscar()"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-
-
-        <div id="popupModificar">
-
-        </div>
-
-
-
-        <div id="botones">
-            <!-- Botón para abrir el pop-up -->
-
-            <button onclick="openForm()" class="open-button">
-                <i class="fa-solid fa-file-circle-plus"></i>
-            </button>
-            <!-- Pop-up del formulario -->
-            <div class="container" id="myForm">
-                <div class="center">
-                    <div class="title">Añadir Producto</div>
-                    <form id="formulario" method="post">
-                        <div class="user-details">
-                            <div class="input-box">
-                                <label for="details">Nombre: </label>
-                                <input type="text" placeholder="Introduzca un nombre" class="form-control"
-                                    name="nombre">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Descripción: </label>
-                                <input type="text" class="form-control" name="descripcion"
-                                    placeholder="Introduzca una descripción">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Cantidad: </label>
-                                <input type="number" class="form-control" name="cantidad"
-                                    placeholder="Introduzca la cantidad">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Fabricante: </label>
-                                <input type="text" class="form-control" name="fabricante"
-                                    placeholder="Introduzca el fabricante">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Estado: </label>
-                                <input type="text" class="form-control" name="estado"
-                                    placeholder="Introduzca el estado">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Stock: </label>
-                                <input type="text" class="form-control" name="stock"
-                                    placeholder="Introduzca el tipo de stock">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Valor: </label>
-                                <input type="text" class="form-control" name="valor" placeholder="Introduzca el valor">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Grupo: </label>
-                                <input type="text" class="form-control" name="grupo"
-                                    placeholder="Introduzca el grupo al que pertenece">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Subgrupo: </label>
-                                <input type="text" class="form-control" name="subgrupo"
-                                    placeholder="Introduzca el subgrupo al que pertenece">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Dueño: </label>
-                                <input type="text" class="form-control" name="dueno" placeholder="Introduzca el dueño">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Espacio: </label>
-                                <input type="text" class="form-control" name="espacio"
-                                    placeholder="Espacio donde se encuentra">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Armario: </label>
-                                <input type="text" class="form-control" name="armario"
-                                    placeholder="Armario donde se encuentra">
-                            </div>
-                            <div class="input-box">
-                                <label for="details">Caja: </label>
-                                <input type="text" class="form-control" name="caja"
-                                    placeholder="Caja donde se encuentra">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="btn">
-                            <button id="btnSubmit" type="button" class="create">Añadir</button>
-                            <button type="button" class="cancel" onclick="closeForm()">Cerrar</button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-
-            <!-- Botón para expotar los datos a CSV -->
-
-            <button onclick="exportToCSV()">
-                <i class="fa-solid fa-file-csv"></i>
-            </button>
-
-            <!-- Botón para importar datos desde CSV -->
-            <button id="openPopupButton">
-                <i class="fa-solid fa-file-arrow-up"></i>
-            </button>
-
-            <div id="popup" class="popup">
-                <div class="popup-content">
-                    <span class="close" id="closePopupButton">&times;</span>
-                    <h3>Selecciona un archivo .csv</h3>
-                    <p id="fileCount"></p>
-                    <form id="uploadForm" action="./php/import.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" accept=".csv" id="fileInput" required>
-                        <button id="btnImport" onclick="importarArchivo()">Importar</button>
-
-                    </form>
-                </div>
-            </div> 
-            
-            <script src="./jvs/exportar.js"></script>
-        </div>
-
-        <div class="dropdown">
-            <button id="btnfiltro" onclick="toggleDropdown()" class="dropbtn"><i class="fa-solid fa-filter"></i>
-                Filtros</button>
-            <div id="myDropdown" class="dropdown-content">
-
-                <label for="cbox1">
-                    <input type="checkbox" id="cbox1" value="nombre" checked>
-                    <span>Nombre</span>
-                </label>
-                <label for="cbox2">
-                    <input type="checkbox" id="cbox2" value="descripcion" checked>
-                    <span>Descripción</span>
-                </label>
-                <label for="cbox3">
-                    <input type="checkbox" id="cbox3" value="cantidad" checked>
-                    <span>Cantidad</span>
-                </label>
-                <label for="cbox4">
-                    <input type="checkbox" id="cbox4" value="fabricante" checked>
-                    <span>Fabricante</span>
-                </label>
-                <label for="cbox5">
-                    <input type="checkbox" id="cbox5" value="estado" checked>
-                    <span>Estado</span>
-                </label>
-                <label for="cbox6">
-                    <input type="checkbox" id="cbox6" value="Stock" checked>
-                    <span>Stock</span>
-                </label>
-
-
-                <label for="cbox7">
-                    <input type="checkbox" id="cbox7" value="Valor" checked>
-                    <span>Valor</span>
-                </label>
-                <label for="cbox8">
-                    <input type="checkbox" id="cbox8" value="Grupo" checked>
-                    <span>Grupo</span>
-                </label>
-                <label for="cbox9">
-                    <input type="checkbox" id="cbox9" value="Subgrupo" checked>
-                    <span>SubGrupo</span>
-                </label>
-                <label for="cbox10">
-                    <input type="checkbox" id="cbox10" value="dueno" checked>
-                    <span>Dueño</span>
-                </label>
-                <label for="cbox11">
-                    <input type="checkbox" id="cbox11" value="LugarEspacio" checked>
-                    <span>Espacio</span>
-                </label>
-                <label for="cbox12">
-                    <input type="checkbox" id="cbox12" value="LugarArmario" checked>
-                    <span>Armario</span>
-                </label>
-                <label for="cbox13">
-                    <input type="checkbox" id="cbox13" value="LugarCaja" checked>
-                    <span>Caja</span>
-                </label>
-
-            </div>
-        </div>
-
-    </div>
-</header>
-
 <body>
-    <table id="tabla" class="table">
-        <tr id="encabezado">
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Cantidad</th>
-            <th>Fabricante</th>
-            <th>Estado</th>
-            <th>Stock</th>
-            <th>Valor</th>
-            <th>Grupo</th>
-            <th>SubGrupo</th>
-            <th>Dueño</th>
-            <th>Espacio</th>
-            <th>Armario</th>
-            <th>Caja</th>
-            <th></th>
+    <div class="contenido">
+        <form id="formulario" action="./php/login.php" method="POST" class="form-box">
+            <h1>Login</h1>
+            
+            <p name="form_error"></p>
+            <div class="input-box">
+                <input type="text" placeholder="Usuario" name="username" required>
+                <i class="bx bxs-user"></i>
+            </div>
+            
 
-        </tr>
-    </table>
-    <script>
+            <div class="input-box">
+                <input type="password" placeholder="Contraseña" name="password" required>
+                <i class='bx bx-lock'></i>
+            </div>
 
-    </script>
+            <div class="remember-password">
+                <label><input type="checkbox"> Recuérdame </label>
+            </div>
+
+            <button type="submit" class="btningresar">Inciar Sesión</button>
+    </div>
 
 </body>
-
 </html>
