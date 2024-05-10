@@ -33,8 +33,133 @@ header nav, body {
     padding-left: 1vh;
 }
 /* CABECERA ********************************** */
+/* NAV */
+/* Estilos para el botón */
+.btn-usu {
+    background-color: #00285da2;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 1vh;
+  }
+  
+.btn-usu .user-info {
+    display: inline;
+    font-size: 15px;
+    background-color: unset;
+}
 
+.btn-usu :hover {
+    cursor: pointer;
+}
+  /* Estilos para el contenido del menú desplegable */
+  .content-usu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Estilo para mostrar el menú desplegable */
+  .content-usu.show {
+    display: block;
+  }
+  
+  /* Ajuste del ancho del menú desplegable al botón */
+  .btn-usu + .content-usu {
+    width: auto; /* O puedes ajustar esto a un valor específico si lo prefieres */
+  }
+  
+  /* Estilos para los enlaces dentro del menú desplegable */
+  .content-usu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align: start;
+    display: block;
+    font-size: 10px;
+  }
+  
+  /* Estilos para los enlaces dentro del menú desplegable al pasar el mouse */
+  .content-usu a:hover {
+    background-color: #aeabab75;
+  }
+  .content-usu a i{
+    display: inline-block; /* Mostrar el icono */
+  }
+  .content-usu a:hover i {
+    margin-right: 0.25vh;
+}
+  .content-usu a.gestusu:hover{
+    text-align: start;
+    font-size: 11px;
+    color: black;
+  }
+  .content-usu a.logout-usu:hover{
+    color: red;
+    background-color: rgba(255, 0, 0, 0.16);
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .content-usu-admin {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: auto;
+  }
+  
+  /* Estilo para mostrar el menú desplegable */
+  .content-usu-admin.show {
+    display: block;
+  }
+  
+  /* Ajuste del ancho del menú desplegable al botón */
+  .btn-usu + .content-usu-admin {
+    width: auto; /* O puedes ajustar esto a un valor específico si lo prefieres */
+  }
+  
+  /* Estilos para los enlaces dentro del menú desplegable */
+  .content-usu-admin a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align: start;
+    display: block;
+    font-size: 10px;
+  }
+  
+  /* Estilos para los enlaces dentro del menú desplegable al pasar el mouse */
+  .content-usu-admin a:hover {
+    background-color: #aeabab75;
+  }
+  .content-usu-admin a i{
+    display: inline-block; /* Mostrar el icono */
+  }
+  .content-usu-admin a:hover i {
+    margin-right: 0.25vh;
+}
+  .content-usu-admin a.gestusu:hover{
+    text-align: start;
+    font-size: 10px;
+    color: black;
+  }
+  .content-usu-admin a.logout-usu:hover{
+    color: red;
+    background-color: rgba(255, 0, 0, 0.16);
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
 /*                                      MENU                                 */
+header {
+    width: auto;
+}
 header nav {
     display: flex;
     background-color: #9e9e9e3f;
@@ -42,7 +167,6 @@ header nav {
     align-items: center;    
     justify-content: space-between;
     padding: 3vh 3vw;
-    
 }
 header img {
     height: 50px;
@@ -70,7 +194,6 @@ header li a:hover {
 header div {
     padding: 1vh;
     display: flex;
-    justify-content: center;
     color: white;
     background-color: #00295d;
     width: 100%;
@@ -89,12 +212,12 @@ head div div{
 }
 
 /*Buscar   */
-#buscar{
+#buscar , #buscarhis , #buscarusu{
     display: flex;
     justify-content: left;
     align-items: center;
 }
-#buscar input{
+#buscar input , #busquedahis , #busquedausu{
     font-size: medium;
     width: 70vh;
     height: 4vh;
@@ -102,7 +225,7 @@ head div div{
     margin-right: 1vh;
 
 }
-#buscar button{
+#buscar button, #btn_busquedahis , #btn_busquedausu{
     font-size: medium;
     width: 4vh;
     height: 4vh;
@@ -129,6 +252,7 @@ button:hover{
 input[type="checkbox"]:hover, #myDropdown input label:hover {
     cursor: pointer; /* Cambia el cursor al pasar sobre un checkbox */
 }
+
 /*                          BOTON IMPORTAR              */
 .popup {
     display: none;
@@ -154,6 +278,27 @@ input[type="checkbox"]:hover, #myDropdown input label:hover {
     width: 40%; /* Adjusted width */
 }
 
+.input-box {
+    max-height: 150px; /* Altura máxima del div que contiene el textarea */
+    overflow: auto; /* Para habilitar el desplazamiento vertical si el contenido excede la altura máxima */
+}
+
+.input-box textarea {
+    max-height: 100%; /* El textarea no puede ser más alto que su contenedor */
+    width: 100%; /* Ajustar el ancho del textarea al 100% del contenedor */
+}
+
+
+.container .center span , .popup-container .center span {
+    color: #aaa;
+    align-self: flex-end;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: right;
+    padding: 10px;
+}
 
 .close {
     color: #aaa;
@@ -194,10 +339,11 @@ input[type="checkbox"]:hover, #myDropdown input label:hover {
 }
 
 /*           FILTRO                                                  */
-/* Estilo del botón */
+/*Estilo del botón*/
 header .dropbtn{
-    display: flex;
-    justify-content: right;
+    /* display: flex;
+    justify-content: right; */
+    display: none;
 }
 
 .dropbtn {
@@ -212,12 +358,11 @@ header .dropbtn{
 /* Contenedor del botón desplegable */
 .dropdown {
     position: relative;
-    display: inline-block;
-    
+    display: none;
 }
 
 /* Contenedor del botón desplegable */
-.dropdown-content {
+ .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -225,14 +370,19 @@ header .dropbtn{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     column-count: 2; /* Divide en dos columnas */
-}
+} 
+
 
 /* Opciones del botón desplegable */
-.dropdown-content label {
+ .dropdown-content label {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+/* Estilos para los iconos */
+.fa-solid {
+    cursor: pointer;
 }
 
 
@@ -263,6 +413,21 @@ header .dropbtn{
     overflow: hidden;
 }
 
+/*head tabla*/
+#tabla th {
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  #tabla th span {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  #tabla th i {
+    cursor: pointer;
+  }
+
 
 
 /* Establece el borde solo para la primera fila */
@@ -288,15 +453,15 @@ tr:nth-child(odd) {
     background-color: #e3e3e3; /* Cambia el color de fondo para las filas pares (opcional) */
   }
   
-#tabla #encabezado {
+#tabla #encabezado , #encabezadohis, #tabla_gestion_usu #encabezado_usuarios {
     /* Cambia el color de fondo del primer tr */
     background-color: rgb(149, 150, 166); 
     font-size: 16px;
 }
 
-
-
-
+#tabla #encabezado .columna-nombre , #encabezadohis {
+    width: 200px; /* Cambia el tamaño de la columna Nombre a 200px */
+}
 
 .resizer {
     position: absolute;
@@ -337,4 +502,109 @@ button.btn-editarcantidad{
     padding: 5px;
     font-size: 17px;
     color: #00295d;
+}
+
+/*GEstion usuarios*/
+.btn-add-user {
+    background-color: #00285da2;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 1vh;
+}
+
+.btn-add-user:hover{
+    background-color: white;
+    color: #00295d;
+    /* Otros estilos de hover si los necesitas */
+}
+
+.btn-modificarcontraseña {
+    padding: 2px;
+    margin-left: 10px;
+}
+.btn-borrarusuario{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 17px;
+    color: #00295d;
+}
+
+/* Estilos para dispositivos de escritorio (24") */
+@media only screen and (min-width: 1440px) {
+    header nav,
+    body {
+        background-image: url("../img/fondo2.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover; /* Hace que la imagen de fondo cubra toda el área disponible */
+        background-attachment: fixed;
+    }
+
+    
+}
+@media only screen and (max-width: 768px) and (min-width: 1439.5px) {
+    header nav,
+    body {
+        background-image: url("../img/fondo2.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0; /* Asegúrate de que no haya margen en el cuerpo */
+        padding: 0; /* Asegúrate de que no haya relleno en el cuerpo */
+    }
+}
+
+/* Estilos para tablet */
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    /* Ajustes de estilos para tablet */
+    header nav,
+    body {
+        background-image: url("../img/fondo2.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    /* Ajustes específicos para tablet */
+    #navegador {
+        
+    }
+    #buscar {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente los elementos */
+        align-items: center; /* Centra verticalmente los elementos */
+        margin-bottom: 20px; /* Añade margen inferior */
+    }
+
+    #botones {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente los elementos */
+        align-items: center; /* Centra verticalmente los elementos */
+    }
+
+    #botones button {
+        margin: 10px; /* Añade margen entre los botones */
+    }
+}
+
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+    /* Ajustes de estilos para dispositivos móviles */
+    header nav,
+    body {
+        background-image: url("../img/fondo2.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-attachment: fixed;
+    }
+#buscar input {
+        width: 80%; /* Reduce el ancho del campo de búsqueda */
+    }
+    
 }

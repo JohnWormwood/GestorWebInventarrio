@@ -1,19 +1,13 @@
 <?php
+//echo "Archivo PHP ejecutado correctamente.";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 // Verificar si se han enviado datos mediante el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los valores del formulario
-    $id = $_POST["id"];
-    $estado = $_POST["estado"];
-    $stock = $_POST["stock"];
-    $valor = $_POST["valor"];
-    $dueno = $_POST["dueno"];
-    $espacio = $_POST["espacio"];
-    $armario = $_POST["armario"];
-    $caja = $_POST["caja"];
+    $nombreusuario = $_POST["Usuarios"];
+    $contraseña = $_POST["Password"];
 
     // Configuración de la base de datos
     $servername = "localhost"; // Cambiar si tu servidor de base de datos está en otro lugar
@@ -29,13 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    // Preparar la consulta SQL para actualizar el elemento
-    $sql = "UPDATE inventario SET estado='$estado', Stock='$stock', Valor='$valor', dueno='$dueno', LugarEspacio='$espacio', LugarArmario='$armario', LugarCaja='$caja' WHERE ID='$id'";
-    
+    // Preparar la consulta SQL para insertar un nuevo elemento
+    $sql = "INSERT INTO usuarios (Usuarios, Password) 
+    VALUES ('$nombreusuario', '$contraseña')";
 
     // Ejecutar la consulta SQL
     if ($conn->query($sql) === TRUE) {
-        echo "Elemento actualizado correctamente.";
+        echo "Nuevo elemento agregado correctamente.";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -43,4 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Cerrar conexión
     $conn->close();
 }
+
+
 ?>

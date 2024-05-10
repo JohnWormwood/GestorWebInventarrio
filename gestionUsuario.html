@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar usuarios</title>
+    
+    <script src="./jvs/gestionusu.js"></script>
+    <script src="./jvs/login.js"></script>
+
+    <script src="https://kit.fontawesome.com/488ca7d98c.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/488ca7d98c.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/add.css">
+</head>
+<header>
+    
+    <nav>
+        <a href="./home.html"><img src="./img/logo.png" alt="Logo de Mi Empresa"></a>
+        <ul>
+            <li><a href="./home.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a></li>
+            <li> | </li>
+            <li><a href="./papelera.html"><i class="fa-solid fa-trash"></i> Papelera</a></li>
+            <li> | </li>
+            <li><a href="./historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+            <li> | </li>
+            <li>
+                <button onclick="toggleDropdown()" class="btn-usu">
+                    <i class="fa-solid fa-user"></i>
+                    <div id="user-info" class="user-info"></div>
+                </button>
+                <div class="content-usu" id="desplegable-btn-usu-admin">
+                    <a href="./gestionUsuario.html" class="gestusu">
+                        <i class="fa-solid fa-gears"></i>
+                        Gestionar usuarios</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+    <div class="barradeacciones">
+        <div id="buscarusu">
+            <input id="busquedausu" placeholder="Buscar">
+            <button id="btn_busquedausu" onclick="buscarusu()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        
+        </div>
+        <div id="myDropdownusu" class="dropdown-content">
+            <label for="cbox1">
+                <input type="checkbox" id="cbox1" value="id" name="checkbox">
+                <span>id</span>
+            </label>
+            <label for="cbox2">
+                <input type="checkbox" id="cbox2" value="Usuarios" name="checkbox">
+                <span>Usuarios</span>
+            </label>
+       </div>
+        
+        <!-- Boton para añadir el pop up -->
+        <button onclick="crearusuariofn()" class="btn-add-user">
+            <i class="fa-solid fa-user-plus"></i>
+        </button>
+
+        
+        <!-- Pop-up del formulario -->
+        <div class="container" id="addusuario">
+            <div class="center">
+                <span class="close" onclick="closeFormausuario()">&times;</span>
+                <div class="title">Añadir usuario</div>
+                <form id="formularioUsuario" method="post">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <label for="details">Nombre: </label>
+                            <input type="text" placeholder="Introduzca el nuevo usuario" class="form-control" name="Usuarios">
+                        </div>
+                        <div class="input-box">
+                            <label for="details">Password: </label>
+                            <input type="text" class="form-control" name="Password" placeholder="Introduzca una contraseña" required>
+                        </div> 
+                    </div>
+                    <br>
+                    <div class="btn">
+                        <button id="submit" type="submit" class="create">Añadir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+                           
+    </div>
+</header>
+<body>
+    <table id="tabla_gestion_usu" class="table">
+        <tr id="encabezado_usuarios">
+            <th class="columna-nombre">
+                <span>id</span>
+                
+            </th>
+            <th>
+                <span>Usuarios</span>
+                
+            </th>
+            <th>Password</th>
+            <th></th>
+        </tr>
+    </table>
+
+</body>
+</html>

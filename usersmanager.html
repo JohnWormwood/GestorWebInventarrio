@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <script src="https://kit.fontawesome.com/488ca7d98c.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Coloca el script.js y el css después de cargar jQuery -->
+    <script src="./jvs/script.js"></script>
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/add.css">
+</head>
+<div class="transparencia"></div>
+<header>
+
+    <nav>
+        <a href="./home.html"><img src="./img/logo.png" alt="Logo de Mi Empresa"></a>
+        <ul>
+            <li><a href="./adminhome.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a></li>
+            <li> | </li>
+            <li><a href="./papelera.html"><i class="fa-solid fa-trash"></i> Papelera</a></li>
+            <li> | </li>
+            <li><a href="./historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+            <li> | </li>
+            <li>
+                <button onclick="toggleDropdown()" class="btn-usu">
+                    <i class="fa-solid fa-user"></i>
+                    Usuario
+                </button>
+                <div class="content-usu" id="desplegable-btn-usu">
+                    <a href="#">Opción 1</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+</header>

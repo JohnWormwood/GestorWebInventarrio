@@ -141,3 +141,66 @@ $(document).ready(function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener el nombre de usuario del almacenamiento local si está disponible
+    var username = localStorage.getItem('username');
+    // Mostrar el nombre de usuario en la esquina de la página si está disponible
+    if (username) {
+        var userInfo = document.getElementById('user-info');
+        userInfo.textContent = username;
+    }else{
+        window.location.href = '../inventario/';
+    }
+});
+
+if (username !== 'admin') {
+    var paginaRestringida = 'gestionusu.html'; // Reemplaza esto con la URL de tu página restringida
+    if (window.location.href.includes(paginaRestringida)) {
+        // Redirigir al usuario a la página de inicio de sesión
+        window.location.href = '../inventario/index.html';
+    }
+}
+
+//          INICIAR SESION
+var username = localStorage.getItem('username');
+
+function toggleDropdown() {
+    if (username === 'admin') {
+        var dropdownContent = document.getElementById("desplegable-btn-usu-admin");
+        dropdownContent.classList.toggle("show");
+    } else {
+        var dropdownContent = document.getElementById("desplegable-btn-usu");
+        dropdownContent.classList.toggle("show");
+    }
+
+}
+
+// Cierra el menú desplegable si el usuario hace clic fuera de él
+window.onclick = function(event) {
+    if (!event.target.matches('.user-info')) {
+        if (username === 'admin') {    
+            var dropdowns = document.getElementsByClassName("content-usu-admin");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];    
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        } else {
+            var dropdowns = document.getElementsByClassName("content-usu");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];    
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+}
+
+function cerrarSesion() {
+    // Aquí colocarías el código para cerrar la sesión, por ejemplo, redirigir al usuario a la página de inicio de sesión o eliminar los datos de sesión
+    // Eliminar el nombre de usuario del almacenamiento local
+    localStorage.removeItem('username');
+    window.location.href = "index.html"; // Ejemplo de redirección a la página de inicio
+}

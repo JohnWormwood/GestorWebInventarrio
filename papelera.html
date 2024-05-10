@@ -11,7 +11,8 @@
     <script src="./jvs/papelera.js"></script>
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="stylesheet" href="./css/papelera.css">
-</head>
+    <script src=".jvs/login.js"></script>
+    </head>
 <header>
     
     <nav>
@@ -23,7 +24,28 @@
             <li> | </li>
             <li><a href="./historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
             <li> | </li>
-            <li><a href="##"><i class="fa-solid fa-user"></i> Usuario</a></li>
+            <li>
+                <button onclick="toggleDropdown()" class="btn-usu">
+                    <i class="fa-solid fa-user"></i>
+                    <div id="user-info" class="user-info"></div>
+                </button>
+                <div class="content-usu" id="desplegable-btn-usu">
+                    <a href="#">Opción 1</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+                <div class="content-usu-admin" id="desplegable-btn-usu-admin">
+                    <a href="./gestionUsuario.html" class="gestusu">
+                        <i class="fa-solid fa-gears"></i>
+                        Gestionar usuarios</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </li>
         </ul>
     </nav>
     <div>
@@ -56,6 +78,7 @@
             <th>Espacio</th>
             <th>Armario</th>
             <th>Caja</th>
+            <th></th>
 
         </tr>
     </table>

@@ -1,6 +1,6 @@
 <?php
 // Obtener el valor de búsqueda y los valores de los checkbox enviados desde el cliente
-$busqueda = $_POST["busqueda"];
+$busqueda = $_POST["busquedahis"];
 $valoresCheckbox = explode(",", $_POST["valoresCheckbox"]);
 
 // Configuración de la base de datos
@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 $selectColumns = implode(",", $valoresCheckbox);
 
 // Consulta SQL con filtro de búsqueda y de valores de checkbox
-$sql = "SELECT * FROM `inventario` WHERE CONCAT($selectColumns) LIKE '%$busqueda%' AND borrado = false";
+$sql = "SELECT * FROM `historial` WHERE CONCAT($selectColumns) LIKE '%$busqueda%'";
 
 // Ejecutar consulta
 $result = $conn->query($sql);

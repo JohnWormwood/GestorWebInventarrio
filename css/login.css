@@ -124,6 +124,26 @@ body {
     border: none;
     outline: none;
     background: rgba(220, 51, 51, 0.7) 10px;
-    text-align: center;
+    text-align: center; 
 }
 
+.contenido .password-missed {
+    display: flex;
+    justify-content: center;
+    outline: none;
+    text-decoration: none;
+    color: #ffff;
+}
+
+.contenido .àssword-missed:hover {
+    cursor: pointer;
+}
+
+.error-message{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(221, 78, 78);
+    color: whitesmoke;
+}

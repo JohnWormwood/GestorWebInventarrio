@@ -1,3 +1,48 @@
+//          INICIAR SESION
+var username = localStorage.getItem('username');
+
+function toggleDropdown() {
+    if (username === 'admin') {
+        var dropdownContent = document.getElementById("desplegable-btn-usu-admin");
+        dropdownContent.classList.toggle("show");
+    } else {
+        var dropdownContent = document.getElementById("desplegable-btn-usu");
+        dropdownContent.classList.toggle("show");
+    }
+
+}
+
+// Cierra el menú desplegable si el usuario hace clic fuera de él
+window.onclick = function (event) {
+    if (!event.target.matches('.user-info')) {
+        if (username === 'admin') {
+            var dropdowns = document.getElementsByClassName("content-usu-admin");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        } else {
+            var dropdowns = document.getElementsByClassName("content-usu");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+}
+
+
+function cerrarSesion() {
+    // Aquí colocarías el código para cerrar la sesión, por ejemplo, redirigir al usuario a la página de inicio de sesión o eliminar los datos de sesión
+    // Eliminar el nombre de usuario del almacenamiento local
+    localStorage.removeItem('username');
+    window.location.href = "index.html"; // Ejemplo de redirección a la página de inicio
+}
+
 
 //                  EXPORTAR A CSV 
 
@@ -11,7 +56,7 @@ $(document).ready(function () {
         $("#tabla tbody input[type='checkbox']").prop("checked", isChecked);
     });
 });
-/*let activo = true*/
+//let activo = true
 // Función para hacer las columnas de la tabla redimensionables
 let resizable = true; // Variable para controlar si el redimensionamiento está habilitado o no
 
@@ -25,6 +70,11 @@ function createResizableTable(table) {
 
         createResizableColumn(col, resizer);
     });
+}
+
+// Función para activar o desactivar el redimensionamiento
+function toggleResizable(enabled) {
+    resizable = enabled;
 }
 
 function createResizableColumn(col, resizer) {
@@ -74,35 +124,21 @@ function createResizableColumn(col, resizer) {
     resizer.on('mousedown', mouseDownHandler);
 }
 
-// Función para activar o desactivar el redimensionamiento
-function toggleResizable(enabled) {
-    resizable = enabled;
-}
 
-//                  POP-AP PARA AÑADRIR
-
-// Función para abrir el pop-up
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
-    createResizableTable($("#tabla"), false);
-}
-
-// Función para cerrar el pop-up
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-    createResizableTable($("#tabla"), true);
-}
 
 //BOTON FILTRAR//
-function toggleDropdown() {
-    var dropdown = document.getElementById("myDropdown");
-    createResizableTable($("#tabla"), false);
-    if (dropdown.style.display === "none" || dropdown.style.display === "") {
-        dropdown.style.display = "block";
-    } else {
-        dropdown.style.display = "none";
-    }
-}
+// function toggleDropdown() {
+//     var dropdown = document.getElementById("myDropdown");
+//     createResizableTable($("#tabla"), false);
+//     if (dropdown.style.display === "none" || dropdown.style.display === "") {
+//         dropdown.style.display = "block";
+//     } else {
+//         dropdown.style.display = "none";
+//     }
+// }
+
+
+
 
 //                  IMPORTAR CSV                 //
 function PopupImport() {
@@ -192,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Crear el checkbox
                 //var checkbox = $("<input type='checkbox'>");
                 // Crear la fila de la tabla y agregar el checkbox al principio
-                var fila = $("<tr>").append(
+                var fila = $("<tr>").append( 
                     //$("<td>").append(checkbox),
                     $("<td>").text(item.ID).css("display", "none"), // ID oculto
                     $("<td>").text(item.Nombre),
@@ -217,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }).append(
                         $("<button>").html('<i class="fa-solid fa-pen-to-square"></i>').addClass("btn-modificar"),
                         $("<button>").html('<i class="fa-solid fa-trash-can-arrow-up"></i>').addClass("btn-borrar")
-                        
+
                     )
                 );
 
@@ -256,14 +292,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 $("#popupModificar").html(`
                 <div class="popup-container">
                     <div class="center">
+                        <span class="close" onclick="closeForm()">&times;</span>
                         <div class="title">Modificar Producto</div>
                             <form id="formulariomodificar" method="post">
                                 <div class="user-details">
-                                <input type="hidden" name="id" value="${id}"> <!-- Campo oculto para la ID -->
-                                <div class="input-box">
-                                    <label for="details">Cantidad: </label>
-                                    <input type="text" class="form-control" name="cantidad" placeholder="Introduzca la cantidad" value="${cantidad}">
-                                </div>
+                                <input type="hidden" name="id" value="${id}">
+                                
+                                <!-- Campo oculto para la ID -->
                                 <div class="input-box">
                                     <label for="details">Estado: </label>
                                     <input type="text" class="form-control" name="estado" placeholder="Introduzca el estado" value="${estado}">
@@ -292,11 +327,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <label for="details">Caja: </label>
                                     <input type="text" class="form-control" name="caja" placeholder="Caja donde se encuentra" value="${caja}"> 
                                 </div>
-                                    </div>
+                                <div class="input-box">
+                                    <label for="details">Justificación: </label>
+                                    
+                                    <textarea name="caja" class="form-control" cols="90" rows="3" required></textarea>
+                                    
+                                </div>
                                     <br>
                                     <div class="btn">
                                         <button id="btnSubmit2" type="button" class="modify">Modificar</button>
-                                        <button type="button" class="cancel" onclick="closeForm()">Cerrar</button>
                                     </div>
 
                             </form>
@@ -356,79 +395,87 @@ document.addEventListener('DOMContentLoaded', function () {
 
             });
 
-            
+            //Popup de modificar    
             $("#tabla").on("click", ".btn-editarcantidad", function () {
-                var id = $(this).closest("tr").data("id");
-                // Lógica para modificar el elemento con el ID especificado
-                // Obtener los datos de la fila correspondiente
-                var cantidad = fila.find("td:eq(3)").text(); // Ajusta el índice según la cantidad de columnas añadidas
 
+                $("#popupCantidad").remove();
+
+                var id = $(this).closest("tr").find("td:eq(0)").text();
+                var nombre = $(this).closest("tr").find("td:eq(1)").text();
+                var cantidad = $(this).closest("tr").find("td:eq(3)").text();
+                var cantidadAnterior = $(this).closest("tr").find("td:eq(3)").text();
+                var username = localStorage.getItem('username');
 
                 // Llenar el formulario de modificación dentro del popup
-                $("#popupCantidad").html(`
-                <div class="quantity-container">
-                    <div class="center">
-                        <div class="title">Modificar Producto</div>
-                            <form id="formulariomodificar" method="post">
-                                <div class="user-details">
-                                <input type="hidden" name="id" value="${id}"> <!-- Campo oculto para la ID -->
-                                <div class="input-box">
-                                    <label for="details">Cantidad: </label>
-                                    <input type="text" class="form-control" name="cantidad" placeholder="Introduzca la cantidad" value="${cantidad}">
-                                </div>
+                var popupCantidad = $('<div id="popupCantidad" class="popup"></div>').appendTo('body');
+                popupCantidad.html(`
+                <div class="popup-content">
+                    <span class="close" onclick="closeForm()">&times;</span>
+                    <h3>Modificar Cantidad</h3>
+                        <form id="form-modificant" method="post">
+
+                            <input type="hidden" name="id" value="${id}">
+                            <input type="hidden" name="nombre" value="${nombre}">
+                            <input type="hidden" name="usuario" value="${username}">    
+                            <input type="hidden" name="cantidadAnterior" value="${cantidadAnterior}">
+    
+                            <br>
+                 
+                            <div class="input-box">
+                                <label for="cantidad">Cantidad:</label>
+                                <input type="text" class="form-control" name="cantidad" placeholder="Introduzca la cantidad" value="${cantidad}">
+                            </div>
+                            <br>
+                            <div class="input-box">
+                                <label for="details">Justificación: </label>
                                 <br>
-                                <div class="btn">
-                                    <button id="btnSubmit2" type="button" class="modify">Modificar</button>
-                                    <button type="button" class="cancel" onclick="closeForm()">Cerrar</button>
-                                </div>
-                            </form>
-                    </div>
+                                <textarea name="justificacion" class="form-control" cols="90" rows="5" required></textarea> 
+                            </div>
+                            <br>
+                            <div class="btn">
+                                <button id="btnModcant" type="button" class="modify">Modificar</button>
+                            </div>
+                            
+                        </form>
                 </div>`
                 );
 
                 // Mostrar el popup de modificación
-                $("#popupCantidad").show();
-                // Agregar el evento al botón "Modificar" después de generarlo
+                popupCantidad.show();
 
+                // Controlador de eventos para el clic en el botón "Modificar" dentro del popup
+                $("#popupCantidad").on("click", "#btnModcant", function () {
+                    // Controlador de eventos para el clic en el botón "Modificar" dentro del popup
+                    // Obtener el formulario de modificación y los datos del mismo
+                    var form = $("#form-modificant");
+                    var formData = form.serialize(); // Serializar el formulario para enviarlo con la solicitud AJAX
 
-            });
-            // Controlador de eventos para el clic en el botón "Modificar" dentro del popup
-            $("#popupCantidad").on("click", "#btnSubmit2", function () {
-                // Obtener el formulario de modificación y los datos del mismo
-                var form = $("#formulariomodificar");
-                var formData = form.serialize(); // Serializar el formulario para enviarlo con la solicitud AJAX
+                    // Crear una nueva solicitud AJAX para enviar los datos del formulario al servidor
+                    $.ajax({
+                        url: "../inventario/php/editarcantidad.php",
+                        type: "POST",
+                        data: formData,
+                        success: function (response) {
+                            alert(response);
+                            location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error en la solicitud: " + status + ", " + error);
+                        }
+                    });
 
-                // Crear una nueva solicitud AJAX para enviar los datos del formulario al servidor
-                $.ajax({
-                    url: "../php/modificar.php",
-                    type: "POST",
-                    data: formData,
-                    success: function (response) {
-                        alert(response); // Mostrar la respuesta del servidor en un mensaje de alerta
-                        // Otra lógica para manejar la respuesta del servidor, si es necesario
-                        buscar();
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error en la solicitud: " + status + ", " + error);
-                    }
                 });
+
             });
         }
-
     });
 });
-//Cerrar el form de modificar
-function closeForm() {
-    $("#popupModificar").hide();
-    $("#popupCantidad").hide();
-    $("#myForm").hide();
-}
-
 
 
 function buscar() {
     var busqueda = document.getElementById("busqueda").value;
     var valoresCheckbox = obtenerValoresCheckbox();
+    console.log(valoresCheckbox)
 
     // Hacer una solicitud AJAX para obtener los datos filtrados del archivo PHP
     $.ajax({
@@ -451,7 +498,46 @@ function obtenerValoresCheckbox() {
     $("#myDropdown input[type='checkbox']:checked").each(function () {
         valores.push($(this).val());
     });
-    return valores.join(",");
+    if (valores.length === 0) {
+        return "Nombre, descripcion, cantidad, fabricante, estado, Stock, Valor, Grupo, Subgrupo, dueno, LugarEspacio, LugarArmario, LugarCaja";
+    } else {
+        return valores.join(",");
+    }
+}
+
+
+// CHECKBOX //
+// Llamar a la función cuando se carga la página
+document.addEventListener('DOMContentLoaded', function () {
+    ajustarEstilosIconos();
+});
+
+function cambiarColorIcono(idIcono) {
+    var icono = document.getElementById(idIcono);
+    // Cambiar color del icono
+    if (icono.style.color === 'black') {
+        icono.style.color = 'red'; // Si ya está rojo, cambiar a negro
+    } else {
+        icono.style.color = 'black'; // Si está negro, cambiar a rojo
+    }
+}
+
+
+function ajustarEstilosIconos() {
+    // Iterar sobre cada checkbox
+    for (var i = 1; i <= 13; i++) { // Considerando que hay checkboxes hasta cbox11
+        var checkbox = document.getElementById('cbox' + i); // Obtener el checkbox
+        var icono = document.getElementById('icono' + i); // Obtener el icono
+
+        // Verificar si el checkbox está marcado
+        if (checkbox.checked) {
+            // Si está marcado, aplicar estilo rojo al icono
+            icono.style.color = 'orange';
+        } else {
+            // Si no está marcado, aplicar estilo negro al icono
+            icono.style.color = 'black';
+        }
+    }
 }
 
 
@@ -567,6 +653,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+//tabla
 
 
 
+// Función para activar o desactivar el redimensionamiento
+function toggleResizable(enabled) {
+    resizable = enabled;
+}
+
+
+//                  POP-AP PARA AÑADRIR
+
+// Función para abrir el pop-up
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    createResizableTable($("#tabla"), false);
+}
+
+// Función para cerrar el pop-up
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    createResizableTable($("#tabla"), true);
+    $("#popupModificar").hide();
+    $("#popupCantidad").hide();
+    $("#myForm").hide();
+}
+
+//BOTON FILTRAR//
+// function toggleDropdown() {
+//     var dropdown = document.getElementById("myDropdown");
+//     createResizableTable($("#tabla"), false);
+//     if (dropdown.style.display === "none" || dropdown.style.display === "") {
+//         dropdown.style.display = "block";
+//     } else {
+//         dropdown.style.display = "none";
+//     }
+// }
+
+//session
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el nombre de usuario del almacenamiento local si está disponible
+    var username = localStorage.getItem('username');
+    // Mostrar el nombre de usuario en la esquina de la página si está disponible
+    if (username) {
+        var userInfo = document.getElementById('user-info');
+        userInfo.textContent = username;
+    } else {
+        window.location.href = '../inventario/';
+    }
+});

@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Papelera</title>
+    <title>Historial</title>
     <script src="https://kit.fontawesome.com/488ca7d98c.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/488ca7d98c.js" crossorigin="anonymous"></script>
+    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./jvs/papelera.js"></script>
+    <script src="./jvs/historial.js"></script>
+
     <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="stylesheet" href="./css/papelera.css">
+    
 </head>
 <header>
     
@@ -23,25 +24,114 @@
             <li> | </li>
             <li><a href="./historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
             <li> | </li>
-            <li><a href="##"><i class="fa-solid fa-user"></i> Usuario</a></li>
+            <li>
+                <button onclick="toggleDropdown()" class="btn-usu">
+                    <i class="fa-solid fa-user"></i>
+                    <div id="user-info" class="user-info"></div>
+                </button>
+                <div class="content-usu" id="desplegable-btn-usu">
+                    <a href="#">Opción 1</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+                <div class="content-usu-admin" id="desplegable-btn-usu-admin">
+                    <a href="./gestionUsuario.html" class="gestusu">
+                        <i class="fa-solid fa-gears"></i>
+                        Gestionar usuarios</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </li>
 
         </ul>
     </nav>
     <div>
-        <div id="buscar">
-            <input id="busqueda" placeholder="Buscar">
-            <button id="btn_busqueda" onclick="buscar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div id="buscarhis">
+            <input id="busquedahis" placeholder="Buscar">
+            <button id="btn_busquedahis" onclick="buscarhis()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <!-- COPIAR EN EL SERVIDOR -->
-        
-        <div class="btn-container">
-            <button class="btn-delete"id="vaciarPapelera">
-              Vaciar la papelera
+
+        <!-- Boton filtro ocultos no quitar ya que por esto se rige el jvs -->
+        <div class="dropdown">
+            <button id="btnfiltro" onclick="toggleDropdown()" class="dropbtn">
+                <span>Filtros<span>
+                        <i class="fa-solid fa-filter"></i>
             </button>
-        </div>                    
+            <div id="myDropdownhis" class="dropdown-content">
+                <label for="cbox1">
+                    <input type="checkbox" id="cbox1" value="usuario" name="checkbox">
+                    <span>Usuario</span>
+                </label>
+                <label for="cbox2">
+                    <input type="checkbox" id="cbox2" value="justificacion" name="checkbox">
+                    <span>Justificación</span>
+                </label>
+                <label for="cbox3">
+                    <input type="checkbox" id="cbox3" value="nombre_producto">
+                    <span>Nombre del producto</span>
+                </label>
+                <label for="cbox4">
+                    <input type="checkbox" id="cbox4" value="cantidad_anterior">
+                    <span>Cantidad anterior</span>
+                </label>
+                <label for="cbox5">
+                    <input type="checkbox" id="cbox5" value="cantidad_modificada">
+                    <span>Cantidad modificada</span>
+                </label>
+                <label for="cbox6">
+                    <input type="checkbox" id="cbox6" value="fecha">
+                    <span>Fecha</span>
+                </label>
+           </div>
+        </div>
+
+                           
     </div>
 </header>
 <body>
-    
+    <table id="tablahis" class="table">        
+        <tr id="encabezadohis">
+            <th class="columna-nombre">
+                <span>Usuario</span>
+                <label for="cbox1">
+                    <i onclick="cambiarColorIcono('icono1')" id="icono1" class="fa-solid fa-filter"></i>
+                </label>
+            </th>
+            <th>
+                <span>Justificacion</span>
+                <label for="cbox2">
+                    <i onclick="cambiarColorIcono('icono2')" id="icono2" class="fa-solid fa-filter"></i>
+                </label>
+            </th>
+            <th>
+                <span>Producto</span>
+                <label for="cbox3">
+                    <i onclick="cambiarColorIcono('icono3')" id="icono3" class="fa-solid fa-filter"></i>
+                </label>
+            </th>
+            <th>
+                <span>Cantidad Anterior</span>
+                <label for="cbox4">
+                    <i onclick="cambiarColorIcono('icono4')" id="icono4" class="fa-solid fa-filter"></i>
+                </label>
+            </th>
+            <th>
+                <span>Cantidad Nueva</span>
+                <label for="cbox5">
+                    <i onclick="cambiarColorIcono('icono5')" id="icono5" class="fa-solid fa-filter"></i>
+                </label>
+            </th>
+            <th>
+                <span>Fecha</span>
+                <label for="cbox6">
+                    <i onclick="cambiarColorIcono('icono6')" id="icono6" class="fa-solid fa-filter"></i>
+                </label>
+            </th>
+        </tr>
+    </table>
 </body>
 </html>

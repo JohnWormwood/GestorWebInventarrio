@@ -24,6 +24,7 @@
 .container .title {
   font-size: 25px;
   font-weight: 500;
+  background: lightgray 20px
 }
 
 .container .center {
@@ -38,9 +39,9 @@
 }
 
 form .user-details .input-box {
-  margin: 10px 0 12px 0;
   width: calc(100% / 3 - 50px);
-  display: block;
+    display: table;
+
 }
 
 
@@ -63,6 +64,8 @@ form .user-details .input-box {
 
 /* Estilo del botĆ³n de enviar y del botĆ³n de cerrar */
 .btn {
+  display: flex;
+  justify-content: center;
   padding: 0;
   border: 10px black;
   cursor: pointer;
@@ -72,7 +75,7 @@ form .user-details .input-box {
 
 .btn button {
   width: 300px;
-  height: 40px;
+  height: 50px;
 }
 
 .btn .create{
@@ -134,3 +137,6 @@ form .user-details .input-box {
   display: flex;
   flex-wrap: wrap;
 }
+
+
+

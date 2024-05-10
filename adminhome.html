@@ -12,6 +12,7 @@
     <!-- Coloca el script.js y el css después de cargar jQuery -->
     <script src="./jvs/script.js"></script>
     <script src="./jvs/quantity.js"></script>
+    <script src="./jvs/login.js"></script>
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="stylesheet" href="./css/add.css">
 </head>
@@ -27,7 +28,21 @@
             <li> | </li>
             <li><a href="./historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
             <li> | </li>
-            <li><a href="##"><i class="fa-solid fa-user"></i> Usuario</a></li>
+            <li>
+                <button onclick="toggleDropdown()" class="btn-usu">
+                    <i class="fa-solid fa-user"></i>
+                    <div id="user-info" class="user-info"></div>
+                </button>
+                <div class="content-usu" id="desplegable-btn-usu">
+                    <a href="./gestionusu.html" class="gestusu">
+                        <i class="fa-solid fa-gears"></i>
+                        Gestionar usuarios</a>
+                    <a class="logout-usu" onclick="cerrarSesion()">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </li>
 
         </ul>
     </nav>
@@ -157,7 +172,7 @@
 
             <script src="./jvs/exportar.js"></script>
         </div>
-
+        <!-- Filtros -->
         <div class="dropdown">
             <button id="btnfiltro" onclick="toggleDropdown()" class="dropbtn"><i class="fa-solid fa-filter"></i>
                 Filtros</button>

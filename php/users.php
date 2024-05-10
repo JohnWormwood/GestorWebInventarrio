@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL
-$sql = "SELECT * FROM `inventario` WHERE `borrado` = false;";
+$sql = "SELECT * FROM `usuarios` WHERE 'Missing' = false";
 
 // Ejecutar consulta
 $result = $conn->query($sql);
@@ -35,3 +35,4 @@ if ($result->num_rows > 0) {
 // Cerrar conexión
 $conn->close();
 ?>
+

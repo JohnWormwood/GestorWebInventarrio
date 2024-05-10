@@ -6,14 +6,9 @@ error_reporting(E_ALL);
 // Verificar si se han enviado datos mediante el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los valores del formulario
-    $id = $_POST["id"];
-    $estado = $_POST["estado"];
-    $stock = $_POST["stock"];
-    $valor = $_POST["valor"];
-    $dueno = $_POST["dueno"];
-    $espacio = $_POST["espacio"];
-    $armario = $_POST["armario"];
-    $caja = $_POST["caja"];
+    $id =$_POST["id"];
+    $nombreusuario = $_POST["usuario"];
+    $contraseña = $_POST["password"];
 
     // Configuración de la base de datos
     $servername = "localhost"; // Cambiar si tu servidor de base de datos está en otro lugar
@@ -30,8 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Preparar la consulta SQL para actualizar el elemento
-    $sql = "UPDATE inventario SET estado='$estado', Stock='$stock', Valor='$valor', dueno='$dueno', LugarEspacio='$espacio', LugarArmario='$armario', LugarCaja='$caja' WHERE ID='$id'";
-    
+    $sql = "UPDATE usuarios SET Password='$contraseña' WHERE ID='$id'";
 
     // Ejecutar la consulta SQL
     if ($conn->query($sql) === TRUE) {

@@ -22,13 +22,13 @@
             
             <p name="form_error"></p>
             <div class="input-box">
-                <input type="text" placeholder="Usuario" name="username" required>
+                <input type="text" id="username" placeholder="Usuario" name="username" required>
                 <i class="bx bxs-user"></i>
             </div>
             
 
             <div class="input-box">
-                <input type="password" placeholder="Contraseña" name="password" required>
+                <input type="password" id="password" placeholder="Contraseña" name="password" required>
                 <i class='bx bx-lock'></i>
             </div>
 
@@ -37,7 +37,10 @@
             </div>
 
             <button type="submit" class="btningresar">Inciar Sesión</button>
+            <a href="#" class="password-missed" id="password-missed">Has olvidado la contraseña?</a>
+            <div id="errorMessage" class="error-message"></div>
+        </form>
     </div>
-
+    <script src="./jvs/login.js"></script>
 </body>
 </html>
